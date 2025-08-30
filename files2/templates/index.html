@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Campus Safety System</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: #000;
+        }
+        #video-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #video-stream {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+        #overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 300px;
+            max-width: 80vw;
+            background: rgba(255, 255, 255, 0.3); /* transparent white */
+            color: #111; /* black text */
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 18px 32px;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            pointer-events: none;
+            z-index: 10;
+            transition: opacity 0.5s;
+            opacity: 0;
+        }
+        #overlay.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <img id="video-stream" src="{{ url_for('video_feed') }}" alt="Live Video Stream" />
+        <div id="overlay"></div>
+    </div>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
